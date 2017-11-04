@@ -35,6 +35,9 @@ GPIO_InitTypeDef GPIO_InitStructure;
 
 /* 私有函数原型 -----------------------------------------------*/
 
+
+
+
 #ifdef __GNUC__
 /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
  set to 'Yes') calls __io_putchar() */
