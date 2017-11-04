@@ -1,0 +1,8 @@
+/startup_stm32f10x_cl.s
+/startup_stm32f10x_hd.s
+/startup_stm32f10x_hd_vl.s
+/startup_stm32f10x_ld.s
+/startup_stm32f10x_ld_vl.s
+/startup_stm32f10x_md.s
+/startup_stm32f10x_md_vl.s
+/startup_stm32f10x_xl.s
