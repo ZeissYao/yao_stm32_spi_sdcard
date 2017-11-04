@@ -33,7 +33,7 @@
 USART_InitTypeDef USART_InitStructure;
 GPIO_InitTypeDef GPIO_InitStructure;
 
-/* Private function prototypes -----------------------------------------------*/
+/* ç§æœ‰å‡½æ•°åŸå‹ -----------------------------------------------*/
 
 #ifdef __GNUC__
 /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
@@ -48,63 +48,63 @@ GPIO_InitTypeDef GPIO_InitStructure;
  * @param  None
  * @retval None
  */
-u8 SD_Buffer[512]; //SD¿¨Êı¾İ»º´æÇø
+u8 SD_Buffer[512]; //SDå¡æ•°æ®ç¼“å­˜åŒº
 int main(void)
 {
     u8 tmp;
     u16 mm, nn;
     u32 nummber, nummber_bak;
 
-    //ÉèÖÃÓÅÏÈ¼¶·Ö×é:ÇÀÕ¼ÓÅÏÈ¼¶ºÍÏìÓ¦ÓÅÏÈ¼¶¸÷2Î»
+    //è®¾ç½®ä¼˜å…ˆçº§åˆ†ç»„:æŠ¢å ä¼˜å…ˆçº§å’Œå“åº”ä¼˜å…ˆçº§å„2ä½
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-    //ÉèÖÃÏòÁ¿±íµÄÎ»ÖÃºÍÆ«ÒÆ:ÔÚFLASHÖĞÆ«ÒÆÎª0
+    //è®¾ç½®å‘é‡è¡¨çš„ä½ç½®å’Œåç§»:åœ¨FLASHä¸­åç§»ä¸º0
     NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0);
 
-    //USART1³õÊ¼»¯
+    //USART1åˆå§‹åŒ–
     USART1_Init();
 
-    //¼ì²âµ±Ç°ÏµÍ³Ê±ÖÓSystemCoreClock
+    //æ£€æµ‹å½“å‰ç³»ç»Ÿæ—¶é’ŸSystemCoreClock
     SystemCoreClockUpdate();
 
-    printf("\r\n×¼±¸¶Á¿¨");
+    printf("\r\nå‡†å¤‡è¯»å¡");
 
-    //¼ì²âSD¿¨,Ê§°ÜÔò2Ãëºó¼ÌĞø¼ì²â
+    //æ£€æµ‹SDå¡,å¤±è´¥åˆ™2ç§’åç»§ç»­æ£€æµ‹
     while (SD_Init() != 0)
     {
-        printf("\r\nÎ´¼ì²âµ½SD¿¨£¡");
+        printf("\r\næœªæ£€æµ‹åˆ°SDå¡ï¼");
         delay_ms(SystemCoreClock, 1000);
         delay_ms(SystemCoreClock, 1000);
-        printf("\r\n¶Á¿¨Ê§°Ü£¡£¡£¡£¡");
+        printf("\r\nè¯»å¡å¤±è´¥ï¼ï¼ï¼ï¼");
     }
 
     delay_ms(SystemCoreClock, 1000);
 
-    //Âß¼­0ÉÈÇøµÄÎïÀíÉÈÇøºÅ
+    //é€»è¾‘0æ‰‡åŒºçš„ç‰©ç†æ‰‡åŒºå·
     nummber_bak = SD_GetLogic0();
 
     printf("\r\nbank number:%d hex:%x", nummber_bak, nummber_bak);
     nummber_bak = 0;
 
-    printf("\r\n³õÊ¼»¯SD¿¨³É¹¦£¡\r\n");
+    printf("\r\nåˆå§‹åŒ–SDå¡æˆåŠŸï¼\r\n");
 
     while (1)
     {
         RxCounter1 = 0;
-        printf("\r\nÇë·¢ËÍÒª¶ÁÈ¡µÄÂß¼­ÉÈÇøºÅ\r\n");
+        printf("\r\nè¯·å‘é€è¦è¯»å–çš„é€»è¾‘æ‰‡åŒºå·\r\n");
 
         do
-        {  //µÈ´ı½ÓÊÕÍ£Ö¹100mS
+        {  //ç­‰å¾…æ¥æ”¶åœæ­¢100mS
             tmp = RxCounter1;
             delay_ms(SystemCoreClock, 100);
         } while (RxCounter1 == 0 || tmp != RxCounter1);
 
-        //½«½ÓÊÕµ½µÄ×Ö·û´®×ª»»³ÉÊıÖµ
+        //å°†æ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²è½¬æ¢æˆæ•°å€¼
         RxBuffer1[RxCounter1] = '\0';
         nummber = atol((const char *) RxBuffer1);
 
-        if (SD_ReadBlock(SD_Buffer, nummber_bak + nummber, 512) == 0)  //¶ÁÖ¸¶¨ÉÈÇø
+        if (SD_ReadBlock(SD_Buffer, nummber_bak + nummber, 512) == 0)  //è¯»æŒ‡å®šæ‰‡åŒº
 
-            printf("\r\nµÚ%dÂß¼­ÉÈÇøÊı¾İ:", nummber);
+            printf("\r\nç¬¬%dé€»è¾‘æ‰‡åŒºæ•°æ®:", nummber);
 
         for (mm = 0; mm < 32; mm++)
         {
@@ -119,7 +119,7 @@ int main(void)
 //  while (1)
 //  {
 //  	delay_ms(SystemCoreClock,1000);
-//	printf("\r\n´®¿Ú1²âÊÔ³ÌĞò");	   
+//	printf("\r\nä¸²å£1æµ‹è¯•ç¨‹åº");	   
 //  }
 }
 
@@ -132,10 +132,10 @@ PUTCHAR_PROTOTYPE
 {
     /* Place your implementation of fputc here */
     /* e.g. write a character to the USART */
-    USART_SendData(USART1, (uint8_t) ch); /*·¢ËÍÒ»¸ö×Ö·ûº¯Êı*/
+    USART_SendData(USART1, (uint8_t) ch); /*å‘é€ä¸€ä¸ªå­—ç¬¦å‡½æ•°*/
 
     /* Loop until the end of transmission */
-    while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)/*µÈ´ı·¢ËÍÍê³É*/
+    while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)/*ç­‰å¾…å‘é€å®Œæˆ*/
     {
 
     }
