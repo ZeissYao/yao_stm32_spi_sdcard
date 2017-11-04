@@ -35,9 +35,6 @@ GPIO_InitTypeDef GPIO_InitStructure;
 
 /* 私有函数原型 -----------------------------------------------*/
 
-
-
-
 #ifdef __GNUC__
 /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
  set to 'Yes') calls __io_putchar() */
@@ -69,10 +66,17 @@ int main(void)
     //检测当前系统时钟SystemCoreClock
     SystemCoreClockUpdate();
 
+<<<<<<< HEAD
+=======
+    printf("\r\n准备读卡");
+>>>>>>> branch 'develop_stm32_spi_sdcard' of https://github.com/ZeissYao/yao_stm32_spi_sdcard.git
 
+<<<<<<< HEAD
 
     printf("\r\n准备读卡");
 
+=======
+>>>>>>> branch 'develop_stm32_spi_sdcard' of https://github.com/ZeissYao/yao_stm32_spi_sdcard.git
     //检测SD卡,失败则2秒后继续检测
     while (SD_Init() != 0)
     {
@@ -124,7 +128,11 @@ int main(void)
 //  while (1)
 //  {
 //  	delay_ms(SystemCoreClock,1000);
+<<<<<<< HEAD
 //	printf("\r\n串口1测试程序");
+=======
+//	printf("\r\n串口1测试程序");
+>>>>>>> branch 'develop_stm32_spi_sdcard' of https://github.com/ZeissYao/yao_stm32_spi_sdcard.git
 //  }
 }
 
